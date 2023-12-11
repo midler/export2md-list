@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="generateButton">Generate Markdown</button>
+    <textarea id="markdownText" style="display:none;"></textarea>
+    <script>
+      const generateButton = document.getElementById('generateButton');
+      const markdownTextArea = document.getElementById('markdownText');
+
+      generateButton.addEventListener('click', () => {
+        parent.postMessage({ pluginMessage: { type: 'generate-markdown' } }, '*');
+      });
+
+      window.onmessage = async (event) => {
+        const msg = event.data.pluginMessage;
+        if (msg && msg.type === 'markdown-generated') {
+          markdownTextArea.value = msg.markdown;
+          markdownTextArea.style.display = 'block';
+          markdownTextArea.select();
+          document.execCommand('copy');
+          markdownTextArea.style.display = 'none';
+          alert('Markdown copied to clipboard!');
+        }
+      };
+    </script>
+  </body>
+</html>

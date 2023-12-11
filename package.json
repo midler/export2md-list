@@ -1,0 +1,17 @@
+{
+  "name": "export2md-list",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && vite build",
+    "watch": "npm run build -- --watch"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.81.0",
+    "typescript": "*",
+    "vite": "^5.0.7"
+  }
+}
